@@ -1,0 +1,18 @@
+<a
+  class="flex min-w-0 gap-x-4 bg-white p-2 mb-2 rounded-md"
+  [routerLink]="'/tasks/' + task.id"
+>
+  <div class="flex-1 font-semibold">
+    {{ task.title }}
+  </div>
+  <div class="flex-1">{{ task.description }}</div>
+  <div class="w-32">{{ task.status | status }}</div>
+  <div class="w-32">{{ task.due_date | date : "mediumDate" }}</div>
+  <div class="w-32">{{ task.priority | priority }}</div>
+  <div class="w-32">{{ task.assignee_ids | user | async }}</div>
+  <div class="w-[50px]">
+    <button (click)="removeTask($event)">
+      <img src="assets/trash.png" class="w-[30px]" alt="" />
+    </button>
+  </div>
+</a>

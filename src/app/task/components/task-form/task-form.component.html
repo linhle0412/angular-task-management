@@ -1,0 +1,118 @@
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <div class="space-y-10">
+    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+      <div class="col-span-full">
+        <label
+          for="title"
+          class="block text-sm font-medium leading-6 text-gray-900"
+          >Title</label
+        >
+        <div class="mt-2">
+          <input
+            type="text"
+            name="title"
+            id="title"
+            formControlName="title"
+            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          />
+        </div>
+      </div>
+      <div class="col-span-full">
+        <label
+          for="description"
+          class="block text-sm font-medium leading-6 text-gray-900"
+          >Description</label
+        >
+        <div class="mt-2">
+          <textarea
+            id="description"
+            name="description"
+            rows="3"
+            formControlName="description"
+            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          ></textarea>
+        </div>
+      </div>
+      <div class="col-span-full">
+        <label
+          for="duedate"
+          class="block text-sm font-medium leading-6 text-gray-900"
+          >Due date</label
+        >
+        <div class="mt-2">
+          <input
+            type="date"
+            name="duedate"
+            id="duedate"
+            formControlName="due_date"
+            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          />
+        </div>
+      </div>
+      <div class="col-span-full grid grid-cols-2 gap-x-6 gap-y-8">
+        <div>
+          <label
+            for="priority"
+            class="block text-sm font-medium leading-6 text-gray-900"
+            >Priority</label
+          >
+          <div class="mt-2">
+            <select
+              id="priority"
+              name="priority"
+              formControlName="priority"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+            >
+              <option value="0">Low</option>
+              <option value="1">Medium</option>
+              <option value="2">High</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label
+            for="status"
+            class="block text-sm font-medium leading-6 text-gray-900"
+            >Status</label
+          >
+          <div class="mt-2">
+            <select
+              id="status"
+              name="status"
+              formControlName="status"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+            >
+              <option value="new">New</option>
+              <option value="in_progress">In progress</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-span-full">
+        <label
+          for="assignee"
+          class="block text-sm font-medium leading-6 text-gray-900"
+          >Assignees</label
+        >
+        <div class="bg-white mt-2">
+          <ng-multiselect-dropdown
+            [placeholder]="'Select users'"
+            [settings]="dropdownSettings"
+            [data]="(users$ | async) ?? []"
+            formControlName="assignees"
+          >
+          </ng-multiselect-dropdown>
+        </div>
+       
+      </div>
+     
+    </div>
+    <button
+      type="submit"
+      class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+    >
+      {{ btnText }}
+    </button>
+  </div>
+</form>

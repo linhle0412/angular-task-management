@@ -1,0 +1,28 @@
+<div>
+  <div>
+    <div class="flex min-w-0 gap-x-4 p-2 mb-2">
+      <div class="flex-1">Title</div>
+      <div class="flex-1">Description</div>
+      <div class="w-32">Status</div>
+      <div class="w-32">Due date</div>
+      <div class="w-32 flex gap-x-2">
+        Priority
+        <button (click)="sort()">
+          <img
+            [ngClass]="[
+              'w-[15px]',
+              orderDirection == 'desc' ? 'rotate-180' : ''
+            ]"
+            src="assets/up-arrow.png"
+            alt=""
+          />
+        </button>
+      </div>
+      <div class="w-32">Assignees</div>
+      <div class="w-[50px]">Action</div>
+    </div>
+    @for (item of (tasks | async); track item) {
+    <app-task-item [task]="item" (onRemove)="removeTask($event)" />
+    }
+  </div>
+</div>

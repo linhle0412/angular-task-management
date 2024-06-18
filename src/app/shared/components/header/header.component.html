@@ -1,0 +1,29 @@
+<div class="border-b border-gray-200 bg-white">
+  <div class="flex max-w-[1000px] mx-auto items-center h-[50px]">
+    <div class="w-[150px]">
+      <img src="/favicon.ico" class="h-[35px]" alt="" />
+    </div>
+    <div class="flex flex-1 justify-center gap-x-6">
+      <a
+        *ngFor="let item of menus"
+        [routerLink]="item.link"
+        class="h-[50px] content-center border-b-4 border-white"
+        routerLinkActive="!border-amber-700"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >{{ item.title }}</a
+      >
+    </div>
+    <div
+      *ngIf="isAuth; else loginTemplate"
+      class="flex gap-x-2 w-[150px] justify-end"
+    >
+      <a [routerLink]="'/profile'">
+        <img src="assets/app-icon-person.png" class="w-[40px]" alt="" />
+      </a>
+      <button (click)="logout()" class="text-sm">Đăng xuất</button>
+    </div>
+    <ng-template #loginTemplate>
+      <button (click)="login()" class="text-sm w-[150px]">Đăng nhập</button>
+    </ng-template>
+  </div>
+</div>
