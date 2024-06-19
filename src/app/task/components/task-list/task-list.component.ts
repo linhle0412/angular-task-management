@@ -11,6 +11,8 @@ import { SharedStore } from '../../../shared/shared-store';
 export class TaskListComponent {
   @Input()
   tasks!: Observable<ITask[]>;
+  @Input()
+  loading!: Observable<boolean>;
   @Output() onRemove = new EventEmitter<string>();
   @Output() onSort = new EventEmitter<'asc' | 'desc'>();
 

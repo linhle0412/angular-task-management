@@ -24,5 +24,6 @@
     @for (item of (tasks | async); track item) {
     <app-task-item [task]="item" (onRemove)="removeTask($event)" />
     }
+    <div *ngIf="!(loading | async) && !(tasks | async)?.length" class="text-sm text-center">Empty result</div>
   </div>
 </div>

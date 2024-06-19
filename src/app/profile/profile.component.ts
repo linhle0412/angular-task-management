@@ -36,6 +36,10 @@ export class ProfileComponent {
     return this.form.get('displayName');
   }
 
+  get email() {
+    return this.form.get('email');
+  }
+
   onSubmit() {
     this.authService
       .updateProfile(this.displayName?.value!)

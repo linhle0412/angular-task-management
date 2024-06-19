@@ -8,7 +8,7 @@ import { TaskService } from '../../task.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedStore } from '../../../shared/shared-store';
-import { combineLatest, map, merge, zip } from 'rxjs';
+import { combineLatest, map, merge, switchMap, zip } from 'rxjs';
 import { IUser } from '../../../shared/shared.type';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
@@ -36,6 +36,8 @@ export class TaskFormComponent {
 
   selectedAssignees: any = [];
   dropdownSettings: IDropdownSettings = {};
+
+  minDate = new Date().toISOString().slice(0, 10);
 
   constructor(
     private store: Store<TaskState>,

@@ -4,7 +4,7 @@ import { ITask, ITasksQueryParams } from './task.type';
 import { Store, select } from '@ngrx/store';
 import { TaskState } from './store/task.reducer';
 import { TasksActionTypes, loadTasks } from './store/task.actions';
-import { selectAllTasks } from './store/task.selectors';
+import { selectAllTasks, selectTasksIsLoading } from './store/task.selectors';
 import { TaskService } from './task.service';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from '../shared/shared.service';
@@ -17,6 +17,8 @@ import { SharedStore } from '../shared/shared-store';
 })
 export class TaskComponent implements OnInit {
   tasks$: Observable<ITask[]>;
+  loading$: Observable<boolean>;
+
   searchValue: string = '';
   filterParams: ITasksQueryParams = {
     status: 'new',
@@ -30,6 +32,7 @@ export class TaskComponent implements OnInit {
     private toastr: ToastrService,
   ) {
     this.tasks$ = this.store.pipe(select(selectAllTasks));
+    this.loading$ = this.store.pipe(select(selectTasksIsLoading))
   }
 
   ngOnInit() {

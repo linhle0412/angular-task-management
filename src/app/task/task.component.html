@@ -37,6 +37,7 @@
   </div>
   <app-task-list
     [tasks]="tasks$"
+    [loading]="loading$"
     (onRemove)="onRemoveTask($event)"
     (onSort)="onSort($event)"
   />
